@@ -9,9 +9,6 @@ class LogGroupList implements \Iterator
     /** @var array */
     private array $list = [];
 
-    /** @var int */
-    private int $position = 0;
-
 
     /**
      * Add text
@@ -19,7 +16,14 @@ class LogGroupList implements \Iterator
      */
     public function add(string $text): void
     {
-        $this->list[] = $text;
+        if (!isset($this->list[$text]))
+        {
+            $this->list[$text] = 1;
+
+            return;
+        }
+
+        $this->list[$text]++;
     }
 
     /**
@@ -27,8 +31,9 @@ class LogGroupList implements \Iterator
      * @link https://php.net/manual/en/iterator.rewind.php
      * @return void Any returned value is ignored.
      */
-    public function rewind() {
-        $this->position = 0;
+    public function rewind()
+    {
+        reset($this->list);
     }
 
 
@@ -39,7 +44,7 @@ class LogGroupList implements \Iterator
      */
     public function current()
     {
-        return $this->list[$this->position];
+        return key($this->list) . ': ' . current($this->list);
     }
 
 
@@ -50,7 +55,7 @@ class LogGroupList implements \Iterator
      */
     public function key()
     {
-        return $this->position;
+        return key($this->list);
     }
 
     /**
@@ -60,7 +65,7 @@ class LogGroupList implements \Iterator
      */
     public function next()
     {
-        ++$this->position;
+        next($this->list);
     }
 
 
@@ -72,7 +77,7 @@ class LogGroupList implements \Iterator
      */
     public function valid()
     {
-        return isset($this->list[$this->position]);
+        return isset($this->list[key($this->list)]);
     }
 
 
