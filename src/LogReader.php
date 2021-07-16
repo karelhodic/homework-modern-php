@@ -28,11 +28,15 @@ class LogReader
 
     /**
      * Read log file
+     * @throws FileException
      */
     public function read()
     {
 
-        // @todo file exist
+        if (file_exists($this->logFilename))
+        {
+            throw new FileException('File not Found');
+        }
 
         $handle = fopen($this->logFilename, "r");
 
