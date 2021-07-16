@@ -40,11 +40,9 @@ class LogReader
 
         $handle = fopen($this->logFilename, "r");
 
-        var_dump($handle);
-
         if ($handle === FALSE)
         {
-            // @todo throw
+            throw new FileException('File not opened');
         }
 
         $logGroupList = new \LogGroupList();
