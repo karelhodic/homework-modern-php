@@ -7,6 +7,6 @@
         "phpstan/phpstan": "^0.12.92"
     },
     "scripts": {
-        "phpstan": "vendor/bin/phpstan analyse src"
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
     }
 }

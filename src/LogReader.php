@@ -43,7 +43,7 @@ class LogReader
      * Read log file
      * @throws FileException
      */
-    public function read()
+    public function read(): void
     {
 
         if (!file_exists($this->logFilename))

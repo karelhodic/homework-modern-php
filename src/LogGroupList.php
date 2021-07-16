@@ -6,7 +6,7 @@
 class LogGroupList implements \Iterator
 {
 
-    /** @var array */
+    /** @var array<int> */
     private array $list = [];
 
 
