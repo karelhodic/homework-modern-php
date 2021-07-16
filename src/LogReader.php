@@ -33,7 +33,7 @@ class LogReader
     public function read()
     {
 
-        if (file_exists($this->logFilename))
+        if (!file_exists($this->logFilename))
         {
             throw new FileException('File not Found');
         }

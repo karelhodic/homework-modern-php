@@ -6,6 +6,7 @@ require_once __DIR__ . '/src/IOutput.php';
 require_once __DIR__ . '/src/ConsoleWriter.php';
 require_once __DIR__ . '/src/LogReader.php';
 require_once __DIR__ . '/src/LogGroupList.php';
+require_once __DIR__ . '/src/FileException.php';
 
 $consoleWriter = new \ConsoleWriter();
 $logFilename = $argv[1] ?? NULL;
