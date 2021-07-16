@@ -34,4 +34,11 @@ $logReader = new \LogReader(
     $filter
 );
 
-$logReader->read();
+try
+{
+    $logReader->read();
+}
+catch (\FileException $ex)
+{
+    echo "{$ex->getMessage()}\n";
+}
