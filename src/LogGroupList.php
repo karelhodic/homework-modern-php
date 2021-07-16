@@ -9,7 +9,7 @@ class LogGroupList implements \Iterator
     /** @var array */
     private array $list = [];
 
-    /** @@ar int */
+    /** @var int */
     private int $position = 0;
 
 
