@@ -7,8 +7,9 @@ require_once __DIR__ . '/src/ConsoleWriter.php';
 require_once __DIR__ . '/src/LogReader.php';
 require_once __DIR__ . '/src/LogGroupList.php';
 require_once __DIR__ . '/src/FileException.php';
+require_once __DIR__ . '/src/IDecorator.php';
+require_once __DIR__ . '/src/Decorator.php';
 
-$consoleWriter = new \ConsoleWriter();
 $logFilename = $argv[1] ?? NULL;
 
 if ($logFilename === NULL)
@@ -17,6 +18,13 @@ if ($logFilename === NULL)
     exit();
 }
 
-$logReader = new \LogReader($logFilename, $consoleWriter);
+$consoleWriter = new \ConsoleWriter();
+$decorator = new \Decorator('/test\.(\w+)/');
+
+$logReader = new \LogReader(
+    $logFilename,
+    $consoleWriter,
+    $decorator
+);
 
 $logReader->read();

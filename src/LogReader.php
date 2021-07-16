@@ -11,18 +11,25 @@ class LogReader
     /** @var IOutput */
     private IOutput $iOutput;
 
+    /** @var IDecorator */
+    private IDecorator $decorator;
+
+
     /**
      * LogReader constructor.
      * @param string $logFilename
      * @param IOutput $iOutput
+     * @param IDecorator $decorator
      */
     public function __construct(
         string $logFilename,
-        IOutput $iOutput
+        IOutput $iOutput,
+        IDecorator $decorator
     )
     {
         $this->logFilename = $logFilename;
         $this->iOutput = $iOutput;
+        $this->decorator = $decorator;
     }
 
 
@@ -49,7 +56,8 @@ class LogReader
 
         while (($line = fgets($handle)) !== false)
         {
-            $logGroupList->add($line);
+            $text = $this->decorator->make($line);
+            $logGroupList->add($text);
         }
 
         fclose($handle);
