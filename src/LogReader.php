@@ -43,11 +43,18 @@ class LogReader
             // @todo throw
         }
 
+        $logGroupList = new \LogGroupList();
+
         while (($line = fgets($handle)) !== false)
         {
-            $this->iOutput->write($line);
+            $logGroupList->add($line);
         }
 
         fclose($handle);
+
+        foreach ($logGroupList as $log)
+        {
+            $this->iOutput->write($log);
+        }
     }
 }
