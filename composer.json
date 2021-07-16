@@ -3,6 +3,10 @@
         "php": ">=7.4"
     },
     "require-dev": {
-        "monolog/monolog": "^1.23"
+        "monolog/monolog": "^1.23",
+        "phpstan/phpstan": "^0.12.92"
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse src"
     }
 }
