@@ -64,6 +64,11 @@ class LogReader
         {
             $text = $this->decorator->make($line);
 
+            if ($text === NULL)
+            {
+                continue;
+            }
+
             if (!$this->iFilter->isValid($text))
             {
                 continue;

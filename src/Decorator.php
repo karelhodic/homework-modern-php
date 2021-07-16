@@ -21,9 +21,9 @@ class Decorator implements IDecorator
 
     /**
      * @param string $text
-     * @return string
+     * @return ?string
      */
-    public function make(string $text): string
+    public function make(string $text): ?string
     {
         $matches = [];
 
@@ -31,5 +31,7 @@ class Decorator implements IDecorator
         {
             return strtolower($matches[1]);
         }
+
+        return NULL;
     }
 }

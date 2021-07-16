@@ -7,7 +7,7 @@ interface IDecorator
 {
     /**
      * @param string $text
-     * @return string
+     * @return ?string
      */
-    public function make(string $text): string;
+    public function make(string $text): ?string;
 }
