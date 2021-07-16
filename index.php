@@ -9,6 +9,8 @@ require_once __DIR__ . '/src/LogGroupList.php';
 require_once __DIR__ . '/src/FileException.php';
 require_once __DIR__ . '/src/IDecorator.php';
 require_once __DIR__ . '/src/Decorator.php';
+require_once __DIR__ . '/src/IFilter.php';
+require_once __DIR__ . '/src/Filter.php';
 
 $logFilename = $argv[1] ?? NULL;
 
@@ -20,11 +22,16 @@ if ($logFilename === NULL)
 
 $consoleWriter = new \ConsoleWriter();
 $decorator = new \Decorator('/test\.(\w+)/');
+$filter = new \Filter();
+
+// add filter
+$filter->addFilter('debug');
 
 $logReader = new \LogReader(
     $logFilename,
     $consoleWriter,
-    $decorator
+    $decorator,
+    $filter
 );
 
 $logReader->read();

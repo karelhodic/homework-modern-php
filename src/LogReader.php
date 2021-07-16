@@ -14,22 +14,28 @@ class LogReader
     /** @var IDecorator */
     private IDecorator $decorator;
 
+    /** @var IFilter */
+    private IFilter $iFilter;
+
 
     /**
      * LogReader constructor.
      * @param string $logFilename
      * @param IOutput $iOutput
      * @param IDecorator $decorator
+     * @param IFilter $iFilter
      */
     public function __construct(
         string $logFilename,
         IOutput $iOutput,
-        IDecorator $decorator
+        IDecorator $decorator,
+        IFilter $iFilter
     )
     {
         $this->logFilename = $logFilename;
         $this->iOutput = $iOutput;
         $this->decorator = $decorator;
+        $this->iFilter = $iFilter;
     }
 
 
@@ -57,6 +63,12 @@ class LogReader
         while (($line = fgets($handle)) !== false)
         {
             $text = $this->decorator->make($line);
+
+            if (!$this->iFilter->isValid($text))
+            {
+                continue;
+            }
+
             $logGroupList->add($text);
         }
 
